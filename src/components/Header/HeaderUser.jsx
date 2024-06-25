@@ -10,11 +10,11 @@ function HeaderUser() {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
             <div>
-            <NavLink to="/user" class="main-nav-item">
+            <NavLink to="/user" className="main-nav-item">
                 <i class="fa fa-user-circle"></i>
                 Tony
             </NavLink>
-            <NavLink to="/" class="main-nav-item">
+            <NavLink to="/" className="main-nav-item">
                 <i class="fa fa-sign-out"></i>
                 Sign Out
             </NavLink>
