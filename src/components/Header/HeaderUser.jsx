@@ -11,11 +11,11 @@ function HeaderUser() {
             </NavLink>
             <div>
             <NavLink to="/user" className="main-nav-item">
-                <i class="fa fa-user-circle"></i>
+                <i className="fa fa-user-circle"></i>
                 Tony
             </NavLink>
             <NavLink to="/" className="main-nav-item">
-                <i class="fa fa-sign-out"></i>
+                <i className="fa fa-sign-out"></i>
                 Sign Out
             </NavLink>
         </div>

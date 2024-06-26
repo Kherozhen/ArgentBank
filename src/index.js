@@ -10,6 +10,7 @@ import '../src/css/main.css';
 import Home from './pages/Home/Home';
 import Connexion from './pages/Connexion/Connexion';
 import User from './pages/User/User';
+import NewProfil from './pages/Connexion/NewProfil';
 
 import Footer from './components/Footer/Footer';
 
@@ -22,6 +23,7 @@ root.render(
           <Route path="/" element={<Home />} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/user" element={<User />} />
+          <Route path="/newprofil" element={<NewProfil />} />
         </Routes>
         <Footer />
       </Router>
