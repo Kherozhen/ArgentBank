@@ -1,7 +1,7 @@
 // Montre comment l'état du site change suivant les actions (pour la connexion)
 
 import { createReducer } from '@reduxjs/toolkit';
-import { loginRequest, loginSuccess, loginFailure } from '../actions/authActions.js';
+import { loginRequest, loginSuccess, loginFailure } from '../actions/userSlice.js';
 
 const initialState = {
   user: null,
