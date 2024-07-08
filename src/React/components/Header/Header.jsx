@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import LogoArgentBank from '../../images/argentBankLogo.png';
+import LogoArgentBank from '../../../images/argentBankLogo.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
 
@@ -11,7 +14,7 @@ function Header() {
             </NavLink>
             <div>
                 <NavLink to="/connexion" className="main-nav-item">
-                    <i className="fa fa-user-circle"></i>
+                    <FontAwesomeIcon icon={faPowerOff} />
                     Sign In
                 </NavLink>
             </div>

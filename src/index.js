@@ -6,11 +6,11 @@ import { Provider } from 'react-redux';
 import store from './reduxjs/store/store';
 
 import '../src/css/main.css';
-import Home from './pages/Home/Home';
-import Connexion from './pages/Connexion/Connexion';
-import User from './pages/User/User';
+import Home from './React/pages/Home/Home';
+import Connexion from './React/pages/Connexion/Connexion';
+import User from './React/pages/User/User';
 
-import Footer from './components/Footer/Footer';
+import Footer from './React/components/Footer/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

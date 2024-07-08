@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import LogoArgentBank from '../../images/argentBankLogo.png';
+import LogoArgentBank from '../../../images/argentBankLogo.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 function HeaderUser() {
 
@@ -11,12 +14,14 @@ function HeaderUser() {
             </NavLink>
             <div>
             <NavLink to="/user" className="main-nav-item">
-                <i className="fa fa-user-circle"></i>
-                Tony
+                <FontAwesomeIcon icon={faCircleUser} />
+                User Name
+            </NavLink>
+            <NavLink to="" className="main-nav-item">
+                <FontAwesomeIcon icon={faGear} />
             </NavLink>
             <NavLink to="/" className="main-nav-item">
-                <i className="fa fa-sign-out"></i>
-                Sign Out
+                <FontAwesomeIcon icon={faPowerOff} />
             </NavLink>
         </div>
       </nav>

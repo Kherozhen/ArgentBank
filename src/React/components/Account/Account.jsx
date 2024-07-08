@@ -1,5 +1,5 @@
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'; 
 
 function Account ({ title, account}) {
 
@@ -12,7 +12,12 @@ function Account ({ title, account}) {
                 <p className="account-amount-description">Available Balance</p>
             </div>
             <div className="account-content-wrapper cta">
-                <button className="transaction-button">View transactions</button>
+                <button 
+                className="transaction-button">
+                <FontAwesomeIcon 
+                    className="arrowRight"
+                    icon={faChevronRight} />
+                </button>
             </div>
         </section>
     )

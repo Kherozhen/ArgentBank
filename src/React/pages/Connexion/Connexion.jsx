@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../reduxjs/actions/userSlice';
+import { loginUser } from '../../../reduxjs/actions/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../components/Header/Header';
+import Header from '../../../React/components/Header/Header';
 
 // import pour l'icone 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'; 
+import { faEye, faEyeSlash, faCircleUser } from '@fortawesome/free-regular-svg-icons'; 
 
 
 function Connexion() {
@@ -17,7 +17,7 @@ function Connexion() {
   const [password, setPassword] = useState ('');
 
   // redux state
-  const {loading, error} = useSelector((state)=>state.user);
+  const { error } = useSelector((state)=>state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,7 +43,9 @@ function Connexion() {
       <Header />
       <main className="main bg-dark">
         <section className="sign-in-content">
-            <i className="fa fa-user-circle sign-in-icon"></i>
+            <FontAwesomeIcon 
+            className="sign-in-icon"
+            icon={faCircleUser} />
             <h1>Sign In</h1>
             <form onSubmit={handleLoginEvent}>
                 <div className="input-wrapper">
@@ -55,7 +57,7 @@ function Connexion() {
                         onChange={(e)=>setUserName(e.target.value)}
                     />
                 </div>
-                <div className="input-wrapper">
+                <div className="input-wrapper inputPassword">
                     <label htmlFor="password">Password</label>
                     <input
                         type={showPassword ? 'text' : 'password'}
@@ -64,6 +66,7 @@ function Connexion() {
                         onChange={(e)=>setPassword(e.target.value)}
                     />
                     <button 
+                      className="showPassword"
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}>
                       <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
@@ -74,7 +77,7 @@ function Connexion() {
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
                 <button className="sign-in-button" type="submit">
-                    {loading?'Loading...':'Sign Ing'}
+                    Sign In
                 </button>
                  {error && <p style={{ color: 'red' }}>{error}</p>}
             </form>

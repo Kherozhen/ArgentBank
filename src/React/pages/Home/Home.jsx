@@ -1,9 +1,9 @@
-import iconChat from '../../images/icon-chat.png';
-import iconMoney from '../../images/icon-money.png';
-import iconSecurity from '../../images/icon-security.png';
+import iconChat from '../../../images/icon-chat.png';
+import iconMoney from '../../../images/icon-money.png';
+import iconSecurity from '../../../images/icon-security.png';
 
-import Header from '../../components/Header/Header';
-import Feature from '../../components/Feature/Feature';
+import Header from '../../../React/components/Header/Header';
+import Feature from '../../../React/components/Feature/Feature';
 
 function Home() {
 
