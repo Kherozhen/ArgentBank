@@ -13,7 +13,7 @@ import { faEye, faEyeSlash, faCircleUser } from '@fortawesome/free-regular-svg-i
 function Connexion() {
 
   // state
-  const [userName, setUserName] = useState ('');
+  const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
 
   // redux state
@@ -22,18 +22,21 @@ function Connexion() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLoginEvent=(e)=>{
-    e.preventdefault();
+    e.preventDefault();
     let userCredentials={
-      userName, password
+      email, password
     }
+    console.log('Submitting login with:', userCredentials);
     dispatch(loginUser(userCredentials)).then((result)=>{
       if(result.payload){
-        setUserName('');
+        setEmail('');
         setPassword('');
         navigate('/user')
       }
     })
   }
+
+  
 
   // ajout d'un bouton pour permettre de voir son mdp
   const [showPassword, setShowPassword] = useState(false);
@@ -49,12 +52,12 @@ function Connexion() {
             <h1>Sign In</h1>
             <form onSubmit={handleLoginEvent}>
                 <div className="input-wrapper">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="text"
-                        id="username"
-                        value={userName}
-                        onChange={(e)=>setUserName(e.target.value)}
+                        id="email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                     />
                 </div>
                 <div className="input-wrapper inputPassword">

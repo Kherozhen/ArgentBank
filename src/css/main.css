@@ -186,6 +186,10 @@ body {
 
 /* Account */
 
+.titleAccount {
+  color: #242424;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -200,18 +204,25 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
+.navIcons{
+  cursor: pointer;
+  display: flex;
+  font-size: 25px;
+  gap: 20px;
+}
 .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
-  background-color: white;
+  border-radius: 5px;
+  background-color: #242424;
   width: 80%;
   margin: 0 auto;
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
   margin-bottom: 2rem;
+  
 }
 
 .account-amount {
@@ -234,6 +245,7 @@ body {
 .account-content-wrapper {
   width: 100%;
   flex: 1;
+  color: white;
 }
 
 .edit-button {
@@ -245,14 +257,10 @@ body {
 }
 
 .transaction-button {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
+  cursor: pointer;
+  font-size: 50px;
+  border: none;
+  background-color: transparent;
   color: #fff;
 }
 
@@ -304,9 +312,5 @@ body {
 
   .account-content-wrapper.cta {
     flex: 0;
-  }
-
-  .transaction-button {
-    width: 200px;
   }
 }

@@ -1,9 +1,23 @@
+import { useState } from 'react';
+
 import HeaderUser from '../../../React/components/Header/HeaderUser';
 import Account from '../../../React/components/Account/Account';
 
 
 
+
 function User() {
+
+    const [userName, setUserName] = useState('Tony Jarvis') // changer le nom quand le lien avec l'api marchera
+
+    const userNameChange = (newUserName) => {
+        setUserName(newUserName); // pour mettre à jour le nom sur le site
+    }
+
+    // Reset le form au cancel
+    const buttonCancel = () => {
+
+    };
 
     return (
         <>
@@ -11,8 +25,7 @@ function User() {
 
             <main className="main bg-dark">
                 <div className="header">
-                    <h1>Welcome back<br />Tony Jarvis!</h1>
-                    <button className="edit-button">Edit Name</button>
+                    <h1 className='titleAccount'>Welcome back<br />{userName}</h1>
                 </div>
 
                 <h2 className="sr-only">Accounts</h2>
