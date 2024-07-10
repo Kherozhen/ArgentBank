@@ -1,31 +1,21 @@
-// Montre comment l'état du site change suivant les actions (pour la connexion)
-
-import { createReducer } from '@reduxjs/toolkit';
-import { loginRequest, loginSuccess, loginFailure } from '../actions/userSlice.js';
-
 const initialState = {
-  user: null,
-  token: null,
-  loading: false,
-  error: null,
+  token: ''
 };
 
-const authReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(loginRequest, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(loginSuccess, (state, action) => {
-      state.loading = false;
-      state.user = action.payload;
-      state.token = action.payload.token;
-      state.error = null;
-    })
-    .addCase(loginFailure, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-});
+const loginReducer = (state = initialState, action) => {
 
-export default authReducer;
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        ...state,
+        token: action.payload.token
+      };
+    case 'LOGOUT':
+      return initialState;
+    default:
+      return state;
+  }
+
+};
+
+export default loginReducer;

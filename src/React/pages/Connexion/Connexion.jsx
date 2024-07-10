@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../../reduxjs/actions/userSlice';
+import { useDispatch } from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../../../React/components/Header/Header';
@@ -15,28 +15,47 @@ function Connexion() {
   // state
   const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
-
-  // redux state
-  const { error } = useSelector((state)=>state.user);
+  const [error, setError] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLoginEvent=(e)=>{
     e.preventDefault();
-    let userCredentials={
-      email, password
-    }
-    console.log('Submitting login with:', userCredentials);
-    dispatch(loginUser(userCredentials)).then((result)=>{
-      if(result.payload){
-        setEmail('');
-        setPassword('');
-        navigate('/user')
-      }
-    })
-  }
 
-  
+    let userCredentials={
+      email : email,
+      password : password
+    }
+
+    fetch('http://localhost:3001/api/v1/user/login', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userCredentials)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if (data.status !== 200){
+        setError(true);
+        return;
+      }
+      else {
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            token: data.body.token
+          }
+        });
+        
+        navigate('/user');
+      }
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 
   // ajout d'un bouton pour permettre de voir son mdp
   const [showPassword, setShowPassword] = useState(false);

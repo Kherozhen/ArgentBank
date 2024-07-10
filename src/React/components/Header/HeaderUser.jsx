@@ -18,6 +18,9 @@ function HeaderUser() {
         dispatch(openForm()); 
     }
 
+    // Déconnexion
+    
+
     return (
         <nav className="main-nav">
             <NavLink to="/" className="main-nav-logo">
