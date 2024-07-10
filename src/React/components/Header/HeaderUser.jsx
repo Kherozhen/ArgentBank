@@ -1,21 +1,21 @@
-import { useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import LogoArgentBank from '../../../images/argentBankLogo.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
-import Form from '../Form/Form'
+import { useDispatch } from 'react-redux';
+import { openForm } from '../../../reduxjs/actions/actionForm';
 
 
 function HeaderUser() {
 
-    // Afficher le formulaire pour le changement du UserName
-    const [form, setForm] = useState(false)
+    const dispatch = useDispatch(); 
 
     // Afficher le formulaire au clique sur l'icone
-    const formIcon = () => {
-        setForm(true); 
+    const buttonIconForm = () => {
+        dispatch(openForm()); 
     }
 
     return (
@@ -32,14 +32,13 @@ function HeaderUser() {
                 <NavLink 
                 to="" 
                 className="main-nav-item"
-                onClick={formIcon}>
+                onClick={buttonIconForm}>
                     <FontAwesomeIcon icon={faGear} />
                 </NavLink>
                 <NavLink to="/" className="main-nav-item">
                     <FontAwesomeIcon icon={faPowerOff} />
                 </NavLink>
             </div>
-            {form && <Form />}
       </nav>
     );
 }

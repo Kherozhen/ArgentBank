@@ -186,10 +186,6 @@ body {
 
 /* Account */
 
-.titleAccount {
-  color: #242424;
-}
-
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -210,6 +206,45 @@ body {
   font-size: 25px;
   gap: 20px;
 }
+
+.titleAccount {
+  color: #242424;
+}
+
+form {
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form h2 {
+  font-size: 35px;
+}
+
+input { 
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #bfbfbf;
+  border-radius : 5px;
+}
+
+.buttonsForm {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttonsForm button {
+  cursor: pointer;
+  color: white;
+  background-color: #00bc77;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  width: 200px;
+  font-size: 16px;
+}
 .account {
   display: flex;
   justify-content: space-between;
@@ -222,7 +257,6 @@ body {
   box-sizing: border-box;
   text-align: left;
   margin-bottom: 2rem;
-  
 }
 
 .account-amount {
