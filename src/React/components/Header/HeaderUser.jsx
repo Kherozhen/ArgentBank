@@ -7,7 +7,7 @@ import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-ic
 
 import { useDispatch } from 'react-redux';
 import { openForm } from '../../../reduxjs/actions/actionForm';
-
+import { LOGOUT } from '../../../reduxjs/reducers/loginReducer';
 
 function HeaderUser() {
 
@@ -19,7 +19,10 @@ function HeaderUser() {
     }
 
     // Déconnexion
-    
+    const buttonLogout = () => {
+        dispatch({ type: LOGOUT });
+        window.location.reload(); // Forcer le rechargement de la page
+    };
 
     return (
         <nav className="main-nav">
@@ -32,15 +35,16 @@ function HeaderUser() {
                 <NavLink to="/user" className="main-nav-item">
                     <FontAwesomeIcon icon={faCircleUser} />
                 </NavLink>
-                <NavLink 
-                to="" 
+                <button
                 className="main-nav-item"
                 onClick={buttonIconForm}>
                     <FontAwesomeIcon icon={faGear} />
-                </NavLink>
-                <NavLink to="/" className="main-nav-item">
+                </button>
+                <button 
+                    className="main-nav-item"
+                    onClick={buttonLogout}>
                     <FontAwesomeIcon icon={faPowerOff} />
-                </NavLink>
+                </button>
             </div>
       </nav>
     );

@@ -49,7 +49,7 @@ function Connexion() {
             token: data.body.token
           }
         });
-        
+        localStorage.setItem('token', data.body.token);
         navigate('/user');
       }
     }).catch(error => {

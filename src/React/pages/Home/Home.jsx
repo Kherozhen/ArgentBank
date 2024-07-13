@@ -5,7 +5,11 @@ import iconSecurity from '../../../images/icon-security.png';
 import Header from '../../../React/components/Header/Header';
 import Feature from '../../../React/components/Feature/Feature';
 
+import TokenStorage from '../Connexion/Token';
+
 function Home() {
+
+    TokenStorage();
 
     return (
         <>
