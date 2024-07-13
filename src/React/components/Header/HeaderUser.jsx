@@ -33,17 +33,23 @@ function HeaderUser() {
             <div className="navIcons">
                 <p className='userNameAccount'>User Name</p>
                 <NavLink to="/user" className="main-nav-item">
-                    <FontAwesomeIcon icon={faCircleUser} />
+                    <FontAwesomeIcon 
+                    className="iconNav" 
+                    icon={faCircleUser} />
                 </NavLink>
                 <button
                 className="main-nav-item"
                 onClick={buttonIconForm}>
-                    <FontAwesomeIcon icon={faGear} />
+                    <FontAwesomeIcon 
+                    className="iconNav" 
+                    icon={faGear} />
                 </button>
                 <button 
                     className="main-nav-item"
                     onClick={buttonLogout}>
-                    <FontAwesomeIcon icon={faPowerOff} />
+                    <FontAwesomeIcon 
+                    className="iconNav" 
+                    icon={faPowerOff} />
                 </button>
             </div>
       </nav>

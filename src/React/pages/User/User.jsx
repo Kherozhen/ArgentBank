@@ -25,7 +25,6 @@ function User() {
 
     TokenStorage();
 
-    //
     const openForm = useSelector(state => state.form.openForm);
 
     return (
@@ -34,7 +33,7 @@ function User() {
 
             <main className="main bg-dark">
                 <div className="header">
-                    {openForm ? <Form /> : <h1 className='titleAccount'>Welcome back<br /></h1>}
+                {openForm ? <Form /> : <h1 className='titleAccount'>Welcome back</h1>}
                 </div>
 
                 <h2 className="sr-only">Accounts</h2>
