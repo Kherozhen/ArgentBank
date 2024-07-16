@@ -10,7 +10,7 @@ const formReducer = (state = initialState, action) => {
         case OPEN_FORM:
             return {...state, openForm: true };
         case CLOSE_FORM:
-            return {...state, closeForm: false };
+            return {...state, openForm: false };
         default:
             return state;
     }

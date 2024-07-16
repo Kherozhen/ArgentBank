@@ -6,17 +6,11 @@ import { closeForm } from '../../../reduxjs/actions/actionForm';
 
 
 function Form () {
-    const [userName, setUserName] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [error, setError] = useState(null);
-    const dispatch = useDispatch();
+    
 
-    const [loading, setLoading] = useState(true);
 
     // Partie pour récupérer les champs Nom et Prénom
-
-    useEffect(() => {
+   {/* useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await fetch('http://localhost:3001/api/v1/user/profile');
@@ -24,19 +18,23 @@ function Form () {
                     throw new Error('Error from API');
                 }
                 const userData = await response.json();
-                setFirstName(userData.firstName);
-                setLastName(userData.lastName);
-                setLoading(false);
+                setFirstName(userData.user.firstName);
+                setLastName(userData.user.lastName);
             } catch (error) {
                 setError(error.message);
-                setLoading(false);
             }
         };
 
         fetchUser();
-    }, []);
+    }, []); */}
 
     // Partie pour envoyer le changement de user name
+
+    const [userName, setUserName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +43,8 @@ function Form () {
             const response = await fetch('http://localhost:3001/api/v1/user/profile', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
                 },
                 body: JSON.stringify({userName})
             });
@@ -64,12 +63,6 @@ function Form () {
     const buttonCancel = () => {
         dispatch(closeForm());
     };
-
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
-
 
     return (
         <form onSubmit={handleSubmit}>

@@ -5,7 +5,7 @@ import LogoArgentBank from '../../../images/argentBankLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openForm } from '../../../reduxjs/actions/actionForm';
 import { LOGOUT } from '../../../reduxjs/reducers/loginReducer';
 
@@ -24,6 +24,10 @@ function HeaderUser() {
         window.location.reload(); // Forcer le rechargement de la page
     };
 
+    // Afficher le user name du profil
+    const userName = useSelector((state => state.user.userName))
+
+
     return (
         <nav className="main-nav">
             <NavLink to="/" className="main-nav-logo">
@@ -31,7 +35,7 @@ function HeaderUser() {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
             <div className="navIcons">
-                <p className='userNameAccount'>User Name</p>
+                <p className='userNameAccount'>{userName}</p> {/*attention remettre les accolades*/}
                 <NavLink to="/user" className="main-nav-item">
                     <FontAwesomeIcon 
                     className="iconNav" 

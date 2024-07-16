@@ -8,6 +8,8 @@ import Form from '../../components/Form/Form';
 
 import TokenStorage from '../Connexion/Token';
 
+import { userInfo } from '../../../reduxjs/actions/actionUserName';
+
 
 
 function User() {
@@ -21,19 +23,41 @@ function User() {
         if(!token) {
             navigate('/');
         }
+
+        // Mise en place et modification du userName
+        const fetchUser = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Error fetching user data');
+                }
+                const userData = await response.json();
+                dispatch(userInfo(userData.user.firstName, userData.user.firstName));
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchUser();
     }, [dispatch, navigate]);
 
     TokenStorage();
 
-    const openForm = useSelector(state => state.form.openForm);
+    
+    // Fermeture du questionnaire => retour du titre
+    const openForm = useSelector((state) => state.form.openForm);
+
 
     return (
         <>
             <HeaderUser />
-
             <main className="main bg-dark">
                 <div className="header">
-                {openForm ? <Form /> : <h1 className='titleAccount'>Welcome back</h1>}
+                    {openForm ? <Form /> : <h1 className='titleAccount'>Welcome back</h1>}
                 </div>
 
                 <h2 className="sr-only">Accounts</h2>
