@@ -3,30 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeForm } from '../../../reduxjs/actions/actionForm';
 
-
-
 function Form () {
-    
-
-
-    // Partie pour récupérer les champs Nom et Prénom
-   {/* useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/api/v1/user/profile');
-                if (!response.ok) {
-                    throw new Error('Error from API');
-                }
-                const userData = await response.json();
-                setFirstName(userData.user.firstName);
-                setLastName(userData.user.lastName);
-            } catch (error) {
-                setError(error.message);
-            }
-        };
-
-        fetchUser();
-    }, []); */}
 
     // Partie pour envoyer le changement de user name
 
@@ -35,6 +12,39 @@ function Form () {
     const [lastName, setLastName] = useState('');
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
+
+
+    // Partie pour récupérer les champs Nom et Prénom
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+                    method: 'PUT',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                    },
+                    body: JSON.stringify({ userName : userName })
+                });
+                if (!response.ok) {
+                    throw new Error('Error from API');
+                }
+                const userData = await response.json();
+                if (userData && userData.body) {
+                    setFirstName(userData.body.firstName);
+                    setLastName(userData.body.lastName);
+                } else {
+                    throw new Error('Problem user data');
+                }
+                
+            } catch (error) {
+                setError(error.message);
+            }
+        };
+
+        fetchUser();
+    }, [userName]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,6 +62,8 @@ function Form () {
             const data = await response.json();
             if (data.status !== 200){
                 setError('Error updating')
+            } else {
+                dispatch(setUserName(userName));
             }
           } catch(error) {
             setError('Error')          
@@ -87,7 +99,6 @@ function Form () {
                 id="firstName" 
                 name="firstName"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
                 disabled/>
             </div>
             <div className='labelInputForm'>
@@ -98,7 +109,6 @@ function Form () {
                 id="lastName" 
                 name="lastName"
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
                 disabled/>
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}

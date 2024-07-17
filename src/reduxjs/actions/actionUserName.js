@@ -1,8 +1,7 @@
+export const USER_INFO = "USER_INFO";
 
-
-export const userInfo = (userName, firstName) => ({
+export const userInfo = (userName) => ({
     type: USER_INFO,
-    payload: { userName, firstName }
+    payload: userName,
 });
 
-export const USER_INFO = "USER_INFO";
