@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import HeaderUser from '../../../React/components/Header/HeaderUser';
 import Account from '../../../React/components/Account/Account';
 import Form from '../../components/Form/Form';
 
-import TokenStorage from '../Connexion/Token';
+import TokenStorage from '../../components/Security/Token';
+import { closeForm } from '../../../reduxjs/actions/actionForm';
 
 function User() {
 
@@ -19,7 +19,11 @@ function User() {
         if(!token) {
             navigate('/');
         }
+        return () => {
+            dispatch(closeForm());  // Fermeture du questionnaire quand on quitte la page
+          };
     }, [dispatch, navigate]);
+
 
     TokenStorage();
 
@@ -30,7 +34,6 @@ function User() {
 
     return (
         <>
-            <HeaderUser />
             <main className="main bg-dark">
                 <div className="header">
                     {openForm ? <Form /> : <h1 className='titleAccount'>Welcome back</h1>}

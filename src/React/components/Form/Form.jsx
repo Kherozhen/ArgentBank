@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeForm } from '../../../reduxjs/actions/actionForm';
 
+import { userInfo } from '../../../reduxjs/actions/actionUserName'; 
+
 function Form () {
 
     // Partie pour envoyer le changement de user name
@@ -12,7 +14,6 @@ function Form () {
     const [lastName, setLastName] = useState('');
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
-
 
     // Partie pour récupérer les champs Nom et Prénom
     useEffect(() => {
@@ -30,9 +31,11 @@ function Form () {
                     throw new Error('Error from API');
                 }
                 const userData = await response.json();
+                console.log('Fetched user data:', userData);
                 if (userData && userData.body) {
                     setFirstName(userData.body.firstName);
                     setLastName(userData.body.lastName);
+                    setUserName(userData.body.userName || userData.body.firstName);
                 } else {
                     throw new Error('Problem user data');
                 }
@@ -48,6 +51,7 @@ function Form () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Submitting userName:', userName);
 
         try {
             const response = await fetch('http://localhost:3001/api/v1/user/profile', {
@@ -60,16 +64,17 @@ function Form () {
             });
           
             const data = await response.json();
+            console.log('Response data:', data);
             if (data.status !== 200){
                 setError('Error updating')
             } else {
-                dispatch(setUserName(userName));
+                dispatch(userInfo(userName));
+                dispatch(closeForm());
             }
           } catch(error) {
             setError('Error')          
         }
-    
-        dispatch(closeForm());
+        
     };
 
     const buttonCancel = () => {
@@ -86,7 +91,7 @@ function Form () {
                 type="text" 
                 id="userName" 
                 name="userName"
-                value={userName}
+                //value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 required
                 />

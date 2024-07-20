@@ -2,10 +2,9 @@ import iconChat from '../../../images/icon-chat.png';
 import iconMoney from '../../../images/icon-money.png';
 import iconSecurity from '../../../images/icon-security.png';
 
-import Header from '../../../React/components/Header/Header';
 import Feature from '../../../React/components/Feature/Feature';
 
-import TokenStorage from '../Connexion/Token';
+import TokenStorage from '../../components/Security/Token';
 
 function Home() {
 
@@ -13,7 +12,6 @@ function Home() {
 
     return (
         <>
-            <Header />
             <main>
                 <section className="hero">
                     <div className="hero-content">

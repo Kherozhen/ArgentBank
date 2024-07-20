@@ -1,14 +1,15 @@
 
-import { USER_INFO } from "../actions/actionUserName";
 
 const initialState = {
     userName: '',
 };
 
+const SET_USERNAME = 'SET_USERNAME';
+
 const userNameReducer = (state = initialState, action) => {
     switch (action.type) {
-        case USER_INFO:
-            return {
+        case SET_USERNAME:
+        return  {
                 ...state,
                 userName: action.payload,
             };
@@ -17,4 +18,5 @@ const userNameReducer = (state = initialState, action) => {
     }
 };
 
+export { SET_USERNAME };
 export default userNameReducer;

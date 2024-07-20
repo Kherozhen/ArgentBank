@@ -5,32 +5,20 @@ import LogoArgentBank from '../../../images/argentBankLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openForm } from '../../../reduxjs/actions/actionForm';
 import { LOGOUT } from '../../../reduxjs/reducers/loginReducer';
 import { useEffect, useState } from 'react';
-// import { useEffect, useState } from 'react';
+
 
 function HeaderUser() {
 
     const dispatch = useDispatch();
-
-    // Afficher le formulaire au clique sur l'icone
-    const buttonIconForm = () => {
-        dispatch(openForm()); 
-    }
-
-    // Déconnexion
-    const buttonLogout = () => {
-        dispatch({ type: LOGOUT });
-        window.location.reload(); // Forcer le rechargement de la page
-    };
-
-    // Afficher le user name du profil
+    const userName = useSelector(state => state.userName.userName);
     const [firstName, setFirstName] = useState('');
-    
     const [error, setError] = useState(null);
 
+    // Afficher le user name du profil
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -46,6 +34,7 @@ function HeaderUser() {
                     throw new Error('Error from API');
                 }
                 const userData = await response.json();
+                console.log('Fetched user data:', userData);
                 if (userData && userData.body) {
                     setFirstName(userData.body.firstName);
 
@@ -57,8 +46,18 @@ function HeaderUser() {
             }
         };
         fetchUser();
-    });
+    }, []);
 
+    // Afficher le formulaire au clique sur l'icone
+    const buttonIconForm = () => {
+        dispatch(openForm()); 
+    }
+
+    // Déconnexion
+    const buttonLogout = () => {
+        dispatch({ type: LOGOUT });
+        window.location.reload(); // Forcer le rechargement de la page
+    };
 
     return (
         <nav className="main-nav">
@@ -68,25 +67,28 @@ function HeaderUser() {
             </NavLink>
             <div className="navIcons">
                 {error && <p style={{ color: 'red' }}>{error}</p>}
-                <p className='userNameAccount'>{firstName}</p>
-                <NavLink to="/user" className="main-nav-item">
-                    <FontAwesomeIcon 
-                    className="iconNav" 
-                    icon={faCircleUser} />
+                <p className='userNameAccount'>{userName || firstName}</p>
+                <NavLink 
+                    to="/user" 
+                    className="main-nav-item">
+                        <FontAwesomeIcon 
+                        className="iconNav" 
+                        icon={faCircleUser} />
                 </NavLink>
-                <button
-                className="main-nav-item"
-                onClick={buttonIconForm}>
-                    <FontAwesomeIcon 
-                    className="iconNav" 
-                    icon={faGear} />
-                </button>
+                <NavLink
+                    to="/user"
+                    className="main-nav-item"
+                    onClick={buttonIconForm}>
+                        <FontAwesomeIcon 
+                        className="iconNav" 
+                        icon={faGear} />
+                </NavLink>
                 <button 
                     className="main-nav-item"
                     onClick={buttonLogout}>
-                    <FontAwesomeIcon 
-                    className="iconNav" 
-                    icon={faPowerOff} />
+                        <FontAwesomeIcon 
+                        className="iconNav" 
+                        icon={faPowerOff} />
                 </button>
             </div>
       </nav>

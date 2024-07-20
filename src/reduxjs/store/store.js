@@ -6,7 +6,7 @@ import userNameReducer from '../reducers/userNameReducer';
 
 const store = configureStore({
   reducer: {
-    user: loginReducer,
+    login: loginReducer,
     form: formReducer,
     userName: userNameReducer,
   }

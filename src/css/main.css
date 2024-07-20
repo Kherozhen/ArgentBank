@@ -262,6 +262,7 @@ input {
   width: 200px;
   font-size: 16px;
 }
+
 .account {
   display: flex;
   justify-content: space-between;
@@ -314,6 +315,28 @@ input {
   background-color: transparent;
   color: #fff;
 }
+
+/* Account Detail */
+
+.accountDetailTitle {
+  display: flex;
+  justify-content: space-around;
+}
+
+.accountDetailTitle h4 {
+  font-weight: 300;
+}
+
+.infoCollapses {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+
+
+/* footer */
 
 .footer {
   display: flex;

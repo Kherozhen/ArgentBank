@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../../React/components/Header/Header';
+import { login } from '../../../reduxjs/actions/actionLogin';
 
 // import pour l'icone 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,8 @@ function Connexion() {
   const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
   const [error, setError] = useState('');
+  // ajout d'un bouton pour permettre de voir son mdp
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,16 +41,11 @@ function Connexion() {
     .then(data => {
       console.log(data);
       if (data.status !== 200){
-        setError(true);
+        setError('Email or password invalid');
         return;
       }
       else {
-        dispatch({
-          type: 'LOGIN',
-          payload: {
-            token: data.body.token
-          }
-        });
+        dispatch(login(data.body.token))
         localStorage.setItem('token', data.body.token);
         navigate('/user');
       }
@@ -57,12 +54,8 @@ function Connexion() {
     });
   }
 
-  // ajout d'un bouton pour permettre de voir son mdp
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <>
-      <Header />
       <main className="main bg-dark">
         <section className="sign-in-content">
             <FontAwesomeIcon 

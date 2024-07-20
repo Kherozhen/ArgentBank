@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'; 
 
+import { NavLink } from 'react-router-dom';
+
 function Account ({ title, account}) {
 
     return (
@@ -12,12 +14,11 @@ function Account ({ title, account}) {
                 <p className="account-amount-description">Available Balance</p>
             </div>
             <div className="account-content-wrapper cta">
-                <button 
-                className="transaction-button">
-                <FontAwesomeIcon 
-                    className="arrowRight"
-                    icon={faChevronRight} />
-                </button>
+                <NavLink to="/userAccountDetail" className="transaction-button">
+                    <FontAwesomeIcon 
+                        className="arrowRight"
+                        icon={faChevronRight} />
+                </NavLink>
             </div>
         </section>
     )

@@ -1,5 +1,5 @@
 const initialState = {
-  token: ''
+  token: localStorage.getItem('token') || '' // evite de devoir se reconnecter a chaque rechargement du site
 };
 
 const LOGIN = 'LOGIN';
