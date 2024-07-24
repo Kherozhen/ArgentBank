@@ -323,25 +323,121 @@ input {
 }
 
 /* Account Detail */
+.collapsecontent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.collapses {
+  background-color: #6aca8a;
+  border-radius: 5px;
+}
+
 .userAccountDetail {
   flex: 1;
 }
+.accountDetailContent{
+  width: 80%;
+  margin: auto;
+}
 
 .accountDetailTitle {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1.5fr 3.5fr 1fr 1fr 0.5fr;
+  justify-items: start;
 }
 
 .accountDetailTitle h4 {
   font-weight: 300;
+  padding-left: 30px;
 }
 
-.infoCollapses {
+.infoCollapse {
+  display: grid;
+  grid-template-columns: 1.5fr 3.5fr 1fr 1fr 0.5fr;
+  justify-items: start;
+  color: white;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.collapseDetailsContent {
+  color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.collapseDetails {
+  display: grid;
+  grid-template-columns: 1.5fr 3.5fr 1fr 1fr 0.5fr;
+  justify-items: start;
+  align-items: baseline;
+}
+
+.date {
+  padding-left: 10px;
+}
+.amount {
+  padding-left: 40px;
+}
+.balance {
+  padding-left: 30px;
+}
+.type{
+  padding-left: 5px;
+}
+.detailsTitle {
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+button {
+  color: white;
+  border: none;
+  background-color: transparent;
+  font-size: 22px;
+  padding-left: 15px;
+}
+
+/* Select Category */
+.selectCategory {
+  position: relative;
+}
+
+.selectCategory ul {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+}
+
+.selectCategory ul li{
   display: flex;
-  justify-content: space-around;
+  padding: 5px;
+  margin: 0;
+  justify-content: space-between;
+}
+.selectCategory ul li .choice {
+  display: flex;
+}
+.collapseDetails .selectCategory .open , .close {
+  font-size: 16px;
+  position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
+/* Input Note */
+.collapseDetails .inputNote {
+  position: relative;
+}
 
+.collapseDetails .inputNote .pencil {
+  font-size: 16px;
+  position: absolute;
+    left: 164px;
+    top: -15px;
+}
 
 /* Error */
 

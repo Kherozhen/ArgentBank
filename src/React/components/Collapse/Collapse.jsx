@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faPencil  } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+
+import Field from '../Fields/Field';
+import Select from '../Select/Select';
+
 
 function Collapse ({ date, description, amount, balance, type, category, note }) {
     
@@ -18,38 +22,35 @@ function Collapse ({ date, description, amount, balance, type, category, note })
                 <p className="description">{description}</p>
                 <p className="amount">{amount}</p>
                 <p className="balance">{balance}</p>
-            </div>
-
-            <button onClick={collapseOpen}>
+                <button onClick={collapseOpen}>
                 {isCollapsed ? 
                     <FontAwesomeIcon 
-                    className="pencil"
+                    className="buttonCollapse"
                     icon={faAngleUp} /> 
                     :
                     <FontAwesomeIcon 
-                    className="pencil"
+                    className="buttonCollapse"
                     icon={faAngleDown} />
                 }
-            </button>
+                </button>
+            </div>
             {!isCollapsed && 
-                <div>
-                    <p className="type">{type}</p>
-                    <div>
-                        <p className="category">{category}</p>
-                        <button>
-                            <FontAwesomeIcon 
-                            className="pencil"
-                            icon={faPencil} />
-                        </button>
+                <div className='collapseDetailsContent'>
+                    <div className='collapseDetails'>
+                        <p className='detailsTitle'>Transaction type</p>
+                        <p className="type">{type}</p>
                     </div>
-                    <div>
-                        <p className="note">{note}</p>
-                        <button>
-                            <FontAwesomeIcon 
-                            className="pencil"
-                            icon={faPencil} />
-                        </button>
-                    </div>
+                    
+                    <Select
+                        label="Category"
+                        categories={[ '...', 'Home', 'Family', 'Medical', 'Food', 'Car', 'Invoices / Bills', 'Insurances', 'Fines', 'Other',]} 
+                        onChange={(newValue) => console.log('Selected Category:', newValue)}
+                        titleEmpty={false}
+                    />
+                        
+                    <Field 
+                        label="Note"
+                    />
                 </div>
             }
         </div>

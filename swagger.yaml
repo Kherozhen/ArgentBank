@@ -4,10 +4,12 @@ info:
   description: Contains all available API endpoints in this codebase
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
+
 host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+
 paths:
   /user/login:
     post:
@@ -101,6 +103,204 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /accounts:
+    get: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Account user
+      description: Return all accounts
+      parameters: 
+      - in: body
+        name: body
+        description: Return all account user's
+        required: true
+        schema: 
+          '#/definitions/userAccount'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/userAccount'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Find account by ID
+      description: Return account by ID
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/userAccount'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions:
+    get: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Return all transation 
+      description: Return all transaction with details
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/AccountTransaction'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}:
+    get: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Find transaction by ID
+      description: Return transaction by ID
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/AccountTransaction'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}/category:
+    post: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Add new comment 
+      description: Add new comment on 'category'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionCategory'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}/category:
+    put: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Change category
+      description: Change comment on 'category'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionCategory'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}/category:
+    delete: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Delete category
+      description: Delete comment on 'category'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionCategory'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}/note:
+    post: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Add new note
+      description: Add new comment on 'note'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionNote'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Erro
+  /accounts/{accountId}/transactions/{transactionId}/note:
+    put: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Change note
+      description: Change comment on 'note'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionNote'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+  /accounts/{accountId}/transactions/{transactionId}/note:
+    delete: 
+      security:
+        - Bearer: []
+      tags:
+        - User Accounts
+      summary: Delete note
+      description: Delete comment on 'note'
+      responses:
+        '200' : 
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/TransactionNote'
+        '400' :
+          description: Bad request
+        '404' :
+          description: Account not found
+        '500' :
+          description: Internat Server Error
+    
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -155,4 +355,50 @@ definitions:
     type: object
     properties:
       userName:
+        type: string
+  UserAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      account:
+        type: string
+        description: account name
+      sum: 
+        type: float
+  AccountTransaction:
+    type: object
+    properties: 
+      id: 
+        type: string
+      date: 
+        type: string
+        description: transaction date 
+      description:
+        type: string
+        description: transaction description 
+      amount: 
+        type: float
+        description: transaction amount
+      balance:
+        type: float
+        description: transaction balance 
+      transactionType:
+        type: string
+        description: transaction type 
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: transaction note
+  TransactionCategory:
+    type: object
+    properties:
+      category: 
+        type: string
+  TransactionNote:
+    type: object
+    properties:
+      note:
         type: string

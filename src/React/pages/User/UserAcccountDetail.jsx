@@ -7,8 +7,8 @@ function UserAccountDetail () {
     return (
         <section className='userAccountDetail'>
             <Account
-                    title="Argent Bank Checking"
-                    account="$2,082.79">
+                title="Argent Bank Checking (x3448)"
+                account="$48,098.43">
             </Account>
             
             <div className="accountDetailContent">
@@ -19,7 +19,47 @@ function UserAccountDetail () {
                     <h4>Balance</h4>
                 </div>
                 <div className="collapsecontent">
-                    <Collapse />
+                    <Collapse 
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        type="Electronic"
+                        >
+                    </Collapse>
+                    <Collapse 
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        type="Electronic"
+                        >
+                    </Collapse>
+                    <Collapse 
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        type="Electronic"
+                        >
+                    </Collapse>
+                    <Collapse 
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        type="Electronic"
+                        >
+                    </Collapse>
+                    <Collapse 
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        type="Electronic"
+                        >
+                    </Collapse>
+                    
                 </div>
             </div>
 
