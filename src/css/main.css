@@ -53,6 +53,7 @@ body {
   border: none;
   background-color: white;
   cursor: pointer;
+  padding-left: 0;
 }
 
 .main-nav a.router-link-exact-active {
@@ -201,9 +202,11 @@ body {
 }
 
 .showPassword {
+  font-size: 12px;
   cursor: pointer;
   border: none;
   background-color: white;
+  color: black;
   position: absolute;
     right: 10px;
     top: 27px;

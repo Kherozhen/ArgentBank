@@ -1,52 +1,55 @@
 import { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeForm } from '../../../reduxjs/actions/actionForm';
 
 import { userInfo } from '../../../reduxjs/actions/actionUserName'; 
+import { SET_USERNAME } from '../../../reduxjs/reducers/userNameReducer';
 
 function Form () {
 
     // Partie pour envoyer le changement de user name
+    const globalUserName = useSelector(state => state.userName.userName);
 
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState(globalUserName ||'');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
     // Partie pour récupérer les champs Nom et Prénom
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-                    method: 'PUT',
-                    headers: {
+    const fetchUser = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+                method: 'PUT',
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}` 
-                    },
-                    body: JSON.stringify({ userName : userName })
-                });
-                if (!response.ok) {
-                    throw new Error('Error from API');
-                }
-                const userData = await response.json();
-                console.log('Fetched user data:', userData);
-                if (userData && userData.body) {
-                    setFirstName(userData.body.firstName);
-                    setLastName(userData.body.lastName);
-                    setUserName(userData.body.userName || userData.body.firstName);
-                } else {
-                    throw new Error('Problem user data');
-                }
-                
-            } catch (error) {
-                setError(error.message);
+                },
+                body: JSON.stringify({ userName : userName })
+            });
+            if (!response.ok) {
+                throw new Error('Error from API');
             }
-        };
+            const userData = await response.json();
+            console.log('Fetched user data:', userData);
+            if (userData && userData.body) {
+                setFirstName(userData.body.firstName);
+                setLastName(userData.body.lastName);
+                setUserName(userData.body.userName || userData.body.firstName);
 
+                dispatch({ type: SET_USERNAME, payload: userData.body.userName || userData.body.firstName });
+            } else {
+                throw new Error('Problem user data');
+            }  
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    useEffect(() => {
         fetchUser();
-    }, [userName]);
+    }, []);
 
 
     const handleSubmit = async (e) => {
@@ -70,6 +73,7 @@ function Form () {
             } else {
                 dispatch(userInfo(userName));
                 dispatch(closeForm());
+                console.log(userName);
             }
           } catch(error) {
             setError('Error')          
@@ -91,7 +95,7 @@ function Form () {
                 type="text" 
                 id="userName" 
                 name="userName"
-                //value={userName}
+                value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 required
                 />
@@ -118,7 +122,7 @@ function Form () {
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className='buttonsForm'>
-                <button type="submit">Save</button>
+                <button type="button" onClick={fetchUser}>Save</button>
                 <button type="button" onClick={buttonCancel}>Cancel</button>
             </div>
         </form>
