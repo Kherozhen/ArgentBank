@@ -104,32 +104,31 @@ paths:
         '500':
           description: Internal Server Error
   /accounts:
-    get: 
+    get:
       security:
         - Bearer: []
       tags:
         - User Accounts
       summary: Account user
       description: Return all accounts
-      parameters: 
-      - in: body
-        name: body
-        description: Return all account user's
-        required: true
-        schema: 
-          '#/definitions/userAccount'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
-            $ref: '#/definitions/userAccount'
-        '400' :
+            $ref: '#/definitions/UserAccount'
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
+
   /accounts/{accountId}:
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        type: string
     get:
       security:
         - Bearer: []
@@ -138,37 +137,53 @@ paths:
       summary: Find account by ID
       description: Return account by ID
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
-            $ref: '#/definitions/userAccount'
-        '400' :
+            $ref: '#/definitions/UserAccount'
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
+
   /accounts/{accountId}/transactions:
-    get: 
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        type: string
+    get:
       security:
         - Bearer: []
       tags:
         - User Accounts
-      summary: Return all transation 
-      description: Return all transaction with details
+      summary: Return all transactions
+      description: Return all transactions with details
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/AccountTransaction'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
+
   /accounts/{accountId}/transactions/{transactionId}:
-    get: 
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        type: string
+      - name: transactionId
+        in: path
+        required: true
+        type: string
+    get:
       security:
         - Bearer: []
       tags:
@@ -176,16 +191,17 @@ paths:
       summary: Find transaction by ID
       description: Return transaction by ID
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/AccountTransaction'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
+
   /accounts/{accountId}/transactions/{transactionId}/category:
     parameters:
       - name: accountId
@@ -196,25 +212,25 @@ paths:
         in: path
         required: true
         type: string
-    post: 
+    post:
       security:
         - Bearer: []
       tags:
         - User Accounts
-      summary: Add new comment 
+      summary: Add new comment
       description: Add new comment on 'category'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionCategory'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
-    put: 
+        '500':
+          description: Internal Server Error
+    put:
       security:
         - Bearer: []
       tags:
@@ -222,17 +238,17 @@ paths:
       summary: Change category
       description: Change comment on 'category'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionCategory'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
-    delete: 
+        '500':
+          description: Internal Server Error
+    delete:
       security:
         - Bearer: []
       tags:
@@ -240,16 +256,17 @@ paths:
       summary: Delete category
       description: Delete comment on 'category'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionCategory'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
+
   /accounts/{accountId}/transactions/{transactionId}/note:
     parameters:
       - name: accountId
@@ -260,7 +277,7 @@ paths:
         in: path
         required: true
         type: string
-    post: 
+    post:
       security:
         - Bearer: []
       tags:
@@ -268,17 +285,17 @@ paths:
       summary: Add new note
       description: Add new comment on 'note'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionNote'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Erro
-    put: 
+        '500':
+          description: Internal Server Error
+    put:
       security:
         - Bearer: []
       tags:
@@ -286,17 +303,17 @@ paths:
       summary: Change note
       description: Change comment on 'note'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionNote'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
-    delete: 
+        '500':
+          description: Internal Server Error
+    delete:
       security:
         - Bearer: []
       tags:
@@ -304,16 +321,16 @@ paths:
       summary: Delete note
       description: Delete comment on 'note'
       responses:
-        '200' : 
+        '200':
           description: Successful operation
           schema:
             $ref: '#/definitions/TransactionNote'
-        '400' :
+        '400':
           description: Bad request
-        '404' :
+        '404':
           description: Account not found
-        '500' :
-          description: Internat Server Error
+        '500':
+          description: Internal Server Error
     
 securityDefinitions:
   Bearer:
