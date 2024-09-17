@@ -103,71 +103,47 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /accounts:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - User Accounts
-      summary: Account user
-      description: Return all accounts
-      responses:
-        '200':
-          description: Successful operation
-          schema:
-            $ref: '#/definitions/UserAccount'
-        '400':
-          description: Bad request
-        '404':
-          description: Account not found
-        '500':
-          description: Internal Server Error
 
-  /accounts/{accountId}:
-    parameters:
-      - name: accountId
-        in: path
-        required: true
-        type: string
+  /transactions:
     get:
       security:
         - Bearer: []
       tags:
-        - User Accounts
-      summary: Find account by ID
-      description: Return account by ID
+        - User Transactions
+      summary: All transaction by user
+      description: Return all transactions on the month and all accounts
+      parameters:
+        - name: month
+          in: query
+          description: Le mois au format AAAA-MM (par exemple, 2024-09)
+          required: true
+          type: string
+          format: date
       responses:
         '200':
           description: Successful operation
           schema:
-            $ref: '#/definitions/UserAccount'
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                compte:
+                  type: string
+                  example: "A"
+                date:
+                  type: string
+                  example: "2024-09-17"
+                montant:
+                  type: number
+                  format: float
+                  example: 100.0
         '400':
           description: Bad request
-        '404':
-          description: Account not found
-        '500':
-          description: Internal Server Error
-
-  /accounts/{accountId}/transactions:
-    parameters:
-      - name: accountId
-        in: path
-        required: true
-        type: string
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - User Accounts
-      summary: Return all transactions
-      description: Return all transactions with details
-      responses:
-        '200':
-          description: Successful operation
-          schema:
-            $ref: '#/definitions/AccountTransaction'
-        '400':
-          description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -187,7 +163,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Find transaction by ID
       description: Return transaction by ID
       responses:
@@ -197,6 +173,8 @@ paths:
             $ref: '#/definitions/AccountTransaction'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -216,7 +194,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Add new comment
       description: Add new comment on 'category'
       responses:
@@ -226,6 +204,8 @@ paths:
             $ref: '#/definitions/TransactionCategory'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -234,7 +214,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Change category
       description: Change comment on 'category'
       responses:
@@ -244,6 +224,8 @@ paths:
             $ref: '#/definitions/TransactionCategory'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -252,7 +234,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Delete category
       description: Delete comment on 'category'
       responses:
@@ -262,6 +244,8 @@ paths:
             $ref: '#/definitions/TransactionCategory'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -281,7 +265,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Add new note
       description: Add new comment on 'note'
       responses:
@@ -291,6 +275,8 @@ paths:
             $ref: '#/definitions/TransactionNote'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -299,7 +285,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Change note
       description: Change comment on 'note'
       responses:
@@ -309,6 +295,8 @@ paths:
             $ref: '#/definitions/TransactionNote'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':
@@ -317,7 +305,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Accounts
+        - User Transactions
       summary: Delete note
       description: Delete comment on 'note'
       responses:
@@ -327,6 +315,8 @@ paths:
             $ref: '#/definitions/TransactionNote'
         '400':
           description: Bad request
+        '401':
+          description: Unauthorized
         '404':
           description: Account not found
         '500':

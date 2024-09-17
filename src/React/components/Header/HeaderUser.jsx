@@ -1,6 +1,6 @@
 
 import { NavLink } from 'react-router-dom';
-import LogoArgentBank from '../../../images/argentBankLogo.png';
+import LogoArgentBank from '../../../images/argentBankLogo.avif';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';

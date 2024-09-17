@@ -78,20 +78,20 @@ body {
   width: 200px;
 }
 
-.navIcons{
-  cursor: pointer;
+.navIcons {
   display: flex;
   font-size: 20px;
   gap: 20px;
 }
 
 .main-nav .iconNav {
+  cursor: pointer;
   color : #42b983;
   font-size: 25px;
 }
 
 .hero {
-  background-image: url('../images/bank-tree.jpeg');
+  background-image: url('../images/bank-tree.avif');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;

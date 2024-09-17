@@ -1,6 +1,6 @@
-import iconChat from '../../../images/icon-chat.png';
-import iconMoney from '../../../images/icon-money.png';
-import iconSecurity from '../../../images/icon-security.png';
+import iconChat from '../../../images/icon-chat.avif';
+import iconMoney from '../../../images/icon-money.avif';
+import iconSecurity from '../../../images/icon-security.avif';
 
 import Feature from '../../../React/components/Feature/Feature';
 

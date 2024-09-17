@@ -1,8 +1,26 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import TokenStorage from '../../components/Security/Token';
 
 import Account from '../../components/Account/Account';
 import Collapse from '../../components/Collapse/Collapse';
 
+
 function UserAccountDetail () {
+
+    // si pas de token => deconnexion => redirection sur la page accueil
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(!token) {
+            navigate('/');
+        }
+    }, [navigate]);
+
+
+    TokenStorage();
+
 
     return (
         <section className='userAccountDetail'>
